@@ -22,7 +22,7 @@ const HeroSection = () => {
         />
 
         {/* Center Text */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center tracking-[0.01em] text-center">
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center tracking-[0.01em] text-center">
           <h1 className="text-[48px] mb-[30px]">
             Custom Jewelry
           </h1>

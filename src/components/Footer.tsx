@@ -1,8 +1,7 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
-
 
 const footerLinks = [
   {
@@ -42,28 +41,31 @@ const paymentIcons = [
 ];
 
 export default function Footer() {
-     const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
 
-     const validateEmail = (email: string) => {
-       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-     };
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
-     const handleSubscribe = () => {
-       if (!validateEmail(email)) {
-         toast.error("Invalid email address. Please try again.");
-         return;
-       }
+  const handleSubscribe = () => {
+    if (!email.trim()) {
+      toast.error("Please enter your email address.");
+      return;
+    }
 
-       toast.success(
-         `Subscribed successfully! Email sent to ${
-           process.env.NEXT_PUBLIC_EMAIL_ADDRESS
-         }`
-       );
-       console.log(
-         `Subscribed email: ${email} sent to ${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`
-       );
-       setEmail("");
-     };
+    if (!validateEmail(email)) {
+      toast.error("Invalid email address. Please try again.");
+      return;
+    }
+
+    toast.success(
+      `Subscribed successfully! Email sent to ${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`
+    );
+    console.log(
+      `Subscribed email: ${email} sent to ${process.env.NEXT_PUBLIC_EMAIL_ADDRESS}`
+    );
+    setEmail("");
+  };
 
   return (
     <footer className=" pt-14 pb-6 px-6 lg:px-20">
@@ -132,14 +134,18 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-200 mt-[60px] pt-[20px] flex flex-col lg:flex-row justify-between items-center text-sm text-gray-600 gap-4">
-        <p>© 2025, All Rights Reserved – MyJewel</p>
+      <div className="border-t border-gray-200 mt-[60px] pt-[20px] flex flex-col lg:flex-row justify-between items-center gap-4">
+        <p className=" text-[14px]">© 2025, All Rights Reserved – MyJewel</p>
         <div className="flex space-x-[30px] text-[12px]">
           <a href="#">Terms & Conditions</a>
           <a href="#">Privacy Policy</a>
           <a href="#">Site Map</a>
-          <Image src="/icons/facebook.svg" alt="FB" width={18} height={18} />
-          <Image src="/icons/instagram.svg" alt="IG" width={22} height={18} />
+          <a href="#">
+            <Image src="/icons/facebook.svg" alt="FB" width={18} height={18} />
+          </a>
+          <a href="#">
+            <Image src="/icons/instagram.svg" alt="IG" width={22} height={18} />
+          </a>
         </div>
       </div>
     </footer>
